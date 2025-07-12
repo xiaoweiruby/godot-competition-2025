@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Godot x openKylin全国开发大赛 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #3498db, #9b59b6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header .subtitle {
+            font-size: 1.2em;
+            color: #7f8c8d;
+            margin-bottom: 20px;
+        }
+
+        .highlight-box {
+            background: linear-gradient(45deg, #ff6b6b, #feca57);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        .card h3 {
+            color: #34495e;
+            margin: 15px 0 10px 0;
+            font-size: 1.2em;
+        }
+
+        .card ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .card li {
+            margin: 8px 0;
+            padding-left: 20px;
+            position: relative;
+        }
+
+        .card li:before {
+            content: "🎮";
+            position: absolute;
+            left: 0;
+        }
+
+        .awards li:before {
+            content: "🏆";
+        }
+
+        .timeline li:before {
+            content: "📅";
+        }
+
+        .rules li:before {
+            content: "📋";
+        }
+
+        .judges li:before {
+            content: "👨‍💼";
+        }
+
+        .steps li:before {
+            content: "📝";
+        }
+
+        .scoring li:before {
+            content: "📊";
+        }
+
+        .prize-amount {
+            color: #e74c3c;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        .percentage {
+            background: #3498db;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            margin-left: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .footer h2 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .organizers {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .organizer {
+            background: linear-gradient(45deg, #74b9ff, #0984e3);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .card {
+                padding: 20px;
+            }
+            
+            .organizers {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #00b894, #00cec9);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- 头部标题 -->
+        <div class="header">
+            <h1>🎮 Godot x openKylin全国开发大赛</h1>
+            <p class="subtitle">2025年度开源游戏开发盛会</p>
+            <div class="highlight-box">
+                🚀 展示创意与技术的平台 • 推动开源社区发展
+            </div>
+            <button class="cta-button">立即报名参赛</button>
+        </div>
+
+        <!-- 主要内容网格 -->
+        <div class="content-grid">
+            <!-- 比赛背景与宗旨 -->
+            <div class="card">
+                <h2>🎯 比赛背景与宗旨</h2>
+                <h3>背景</h3>
+                <p>Godot Hub自2023年起每年举办一次社区开发大赛，现已成为国内Godot社区规模最大的开发比赛。</p>
+                <h3>宗旨</h3>
+                <p>促进使用Godot开源游戏引擎进行软件和游戏创作，激发开源社区活力，鼓励开发者的创意表达，并将优秀作品带到openKylin开源操作系统平台，增进社区间的友好交流。</p>
+            </div>
+
+            <!-- 比赛规则 -->
+            <div class="card rules">
+                <h2>📋 比赛规则</h2>
+                <h3>参赛资格</h3>
+                <ul>
+                    <li>参赛者需遵守法律和比赛规则</li>
+                    <li>个人或团队参赛，团队最多4人</li>
+                </ul>
+                <h3>赛道设置</h3>
+                <ul>
+                    <li><strong>开放赛道</strong>：题材不限</li>
+                    <li><strong>命题赛道</strong>：类似Game Jam，主题在比赛开始后公布</li>
+                </ul>
+                <h3>作品要求</h3>
+                <ul>
+                    <li>需在规定时间内提交作品</li>
+                    <li>作品需在比赛期间主要开发</li>
+                    <li>需开源主体代码</li>
+                    <li>作品版权归原作者所有，主办方拥有永久使用权</li>
+                </ul>
+            </div>
+
+            <!-- 参赛奖励 -->
+            <div class="card awards">
+                <h2>🏆 参赛奖励</h2>
+                <h3>主要奖项</h3>
+                <ul>
+                    <li><strong>最佳游戏奖</strong>：<span class="prize-amount">5000元</span> + 证书</li>
+                    <li><strong>最具创意游戏奖</strong>：<span class="prize-amount">3000元</span> + 证书</li>
+                    <li><strong>最佳Jam游戏奖</strong>：<span class="prize-amount">3000元</span> + 证书</li>
+                    <li><strong>最佳应用软件奖</strong>：<span class="prize-amount">2000元</span> + 证书</li>
+                </ul>
+                <h3>其他奖项</h3>
+                <ul>
+                    <li><strong>一等奖</strong> 3名：<span class="prize-amount">600元</span> + 证书 + 背包</li>
+                    <li><strong>二等奖</strong> 6名：<span class="prize-amount">300元</span> + 证书 + 衬衫</li>
+                    <li><strong>三等奖</strong> 12名：证书 + 水杯</li>
+                    <li><strong>优秀奖</strong> 20名：荣誉证书</li>
+                </ul>
+                <h3>特殊奖励</h3>
+                <ul>
+                    <li><strong>RISC-V赛道</strong>：成功提交RISC-V架构作品可获额外<span class="prize-amount">12%奖金</span></li>
+                </ul>
+            </div>
+
+            <!-- 评委阵容 -->
+            <div class="card judges">
+                <h2>👨‍💼 评委阵容</h2>
+                <h3>特邀评委</h3>
+                <ul>
+                    <li>游戏引擎技术专家 卞安老师</li>
+                    <li>虚幻引擎官方授权讲师 王潇</li>
+                </ul>
+                <h3>社区评委</h3>
+                <ul>
+                    <li>来自openKylin社区的专业人士</li>
+                    <li>来自Godot Hub社区的专业人士</li>
+                </ul>
+            </div>
+
+            <!-- 参赛步骤 -->
+            <div class="card steps">
+                <h2>📝 参赛步骤</h2>
+                <ul>
+                    <li><strong>1. 提交报名</strong>：活动开始后填写报名表单</li>
+                    <li><strong>2. 上传作品</strong>：2025年8月1日至比赛结束，需提交Linux和Windows x86_64架构Release导出作品</li>
+                    <li><strong>3. 开源代码</strong>：在Gitee仓库开源主体代码</li>
+                </ul>
+            </div>
+
+            <!-- 评分标准 -->
+            <div class="card scoring">
+                <h2>📊 评分标准</h2>
+                <h3>游戏评分</h3>
+                <ul>
+                    <li>完成度<span class="percentage">30%</span></li>
+                    <li>游戏玩法<span class="percentage">30%</span></li>
+                    <li>美术<span class="percentage">10%</span></li>
+                    <li>音乐音效<span class="percentage">10%</span></li>
+                    <li>稳定性优化<span class="percentage">10%</span></li>
+                    <li>其他加分项<span class="percentage">10%</span></li>
+                </ul>
+                <h3>应用评分</h3>
+                <ul>
+                    <li>完成度<span class="percentage">30%</span></li>
+                    <li>创意实用性<span class="percentage">40%</span></li>
+                    <li>用户界面<span class="percentage">20%</span></li>
+                    <li>稳定性优化<span class="percentage">10%</span></li>
+                </ul>
+            </div>
+
+            <!-- 比赛时间 -->
+            <div class="card timeline">
+                <h2>📅 比赛时间</h2>
+                <ul>
+                    <li><strong>报名时间</strong>：2025年7月5日 - 9月1日</li>
+                    <li><strong>比赛时间</strong>：2025年7月5日 - 9月10日</li>
+                    <li><strong>提交时间</strong>：2025年8月1日 - 9月10日</li>
+                    <li><strong>评选时间</strong>：2025年9月25日 - 10月15日</li>
+                    <li><strong>颁奖时间</strong>：2025年10月20日 - 10月25日</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 页脚 -->
+        <div class="footer">
+            <h2>🤝 主办方</h2>
+            <div class="organizers">
+                <div class="organizer">Godot Hub</div>
+                <div class="organizer">openKylin开源社区</div>
+            </div>
+            <p style="margin-top: 30px; color: #7f8c8d; font-style: italic;">
+                "这场比赛为开发者提供了一个展示创意和技术的平台，同时也推动了开源社区的发展和交流。"
+            </p>
+        </div>
+    </div>
+
+    <script>
+        // 添加一些交互效果
+        document.addEventListener('DOMContentLoaded', function() {
+            // 为卡片添加点击效果
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(1.02)';
+                    setTimeout(() => {
+                        this.style.transform = '';
+                    }, 200);
+                });
+            });
+
+            // 为CTA按钮添加点击事件
+            const ctaButton = document.querySelector('.cta-button');
+            ctaButton.addEventListener('click', function() {
+                alert('🎮 比赛报名即将开始！请关注官方公告获取报名链接。');
+            });
+
+            // 添加滚动动画
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // 初始化卡片动画
+            cards.forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
